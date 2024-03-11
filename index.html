@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Omer Sella</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/MSR_0419_0450_N8A1207.jpg" alt="" /></a>
+					<h1>Omer Sella.<br>
+					<strong>Mathematics, computing, information theory.</strong> <br /></h1>
+
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2>What do I do ?</h2>
+						</header>
+						<p>Fish make fish DNA, bananas make banana DNA, what kind of DNA do we need to make to store data ?
+<br />My work is around archival storage, i.e.: data that's written once and rarely accessed.<br/>
+
+The state of the art in archival storage is magnetic tape (yeah still) and hard disk drives. Tape is actually amazing and is constantly improving, but not at the rate we pile up data (images, video, sensor data, financial records...). The two leading candidates to replace magnetic tape are glass and DNA.
+
+With DNA we are leveraging over 20 years of work in Molecular Biology and Bioinformatics. We are revisiting some of this work with data storage mind, for example: if sequencing is unreliable for small repeat sequences like ATGATGATG... then we can just encode the data to avoid that. So most of the time I try to understand processes in Molecular Biology and how can we use knowledge of the process to: lower the cost, improve write/read throughput, lower the probability of an error ...</p>
+
+					</section>
+
+				<!-- Two -->
+					<section id="two">
+						<h2>Code</h2>
+						<div class="row">
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/TannerExample.PNG" class="image fit thumb"><img src="images/thumbs/TannerExample.PNG" alt="" /></a>
+								<h3><a href = "https://github.com/Omer-Sella/ldpc">Learning LDPC codes</a></h3>
+								<p>Using deep reinforcement learning to learn LDPC codes. In this project we formulate the problem of finding a good Quaci-Cyclic LDPC code as a Markov decision problem (consecutive replacement of circulant sub-matrices) and use PPO to find new parity matrices.</p>
+							</article>
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/decoderThroughputCUDA.PNG" class="image fit thumb"><img src="images/thumbs/decoderThroughputCUDA.PNG" alt="" /></a>
+								<h3>cudaLDPC </h3>
+								<p>A fan-out / fan-in formulation of the Min-Sum decoder written as CUDA kernels using NUMBA. This is the power house that makes consecutive evaluation of LDPC codes possible, when only the dimension of the parity matrix is known. </p>
+							</article>
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/euclid1.PNG" class="image fit thumb"><img src="images/thumbs/euclid1.PNG" alt="" /></a>
+								<h3>Euclid</h3>
+								<p>A one-stop-shop encoding for data onto DNA that can accomodate multiple local constraints... ...and some global ones.</p>
+							</article>
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/8023.png" class="image fit thumb"><img src="images/thumbs/8023.png" alt="" /></a>
+								<h3><a href = "https://github.com/Omer-Sella/802.3" >802.3</a></h3>
+								<p>A space to develope 802.3 physical layer functions.</p>
+							</article>
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/join.PNG" class="image fit thumb"><img src="images/thumbs/join.PNG" alt="" /></a>
+								<h3>DNA join and content detection</h3>
+								<p>First steps of near storage compute in DNA data storage.</p>
+							</article>
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/20211102_110224006_iOS conv.PNGj" class="image fit thumb"><img src="images/thumbs/20211102_110224006_iOS conv.PNG" alt="" /></a>
+								<h3><a href = "https://github.com/Omer-Sella/reedSolomon">Reed Solomon</a> </h3>
+								<p>Code for Reed Solomon Error Correcting Codes. RS codes are popular in storage applications and are the foundation for some RAID protocols. They are especially useful in storage that is spread over multiple disks or servers, since an indication that a server or a disk is down is considered an erasure rather than an error.</p>
+							</article>
+						</div>
+
+					</section>
+
+	<!-- Two 
+	<section id="two">
+		<h2>Publications</h2>
+		<div class="row">
+			<article class="col-6 col-12-xsmall work-item">
+				<a href="images/fulls/TannerExample.PNG" class="image fit thumb"><img src="images/thumbs/TannerExample.PNG" alt="" /></a>
+				<h3><a href = "https://github.com/Omer-Sella/ldpc">Model compression for data-carrying-DNA sequencing.</a></h3>
+				<p>Nanopore sequencing uses a deep neural network to convert voltage signal to a textual DNA sequence. Using simple compression .</p>
+			</article>
+			<article class="col-6 col-12-xsmall work-item">
+				<a href="images/fulls/decoderThroughputCUDA.PNG" class="image fit thumb"><img src="images/thumbs/decoderThroughputCUDA.PNG" alt="" /></a>
+				<h3>cudaLDPC </h3>
+				<p>A fan-out / fan-in formulation of the Min-Sum decoder written as CUDA kernels using NUMBA. This is the power house that makes consecutive evaluation of LDPC codes possible, when only the dimension of the parity matrix is known. </p>
+			</article>
+			<article class="col-6 col-12-xsmall work-item">
+				<a href="images/fulls/euclid1.PNG" class="image fit thumb"><img src="images/thumbs/euclid1.PNG" alt="" /></a>
+				<h3>Euclid</h3>
+				<p>A one-stop-shop encoding for data onto DNA that can accomodate multiple local constraints... ...and some global ones.</p>
+			</article>
+			<article class="col-6 col-12-xsmall work-item">
+				<a href="images/fulls/8023.png" class="image fit thumb"><img src="images/thumbs/8023.png" alt="" /></a>
+				<h3><a href = "https://github.com/Omer-Sella/802.3" >802.3</a></h3>
+				<p>A space to develope 802.3 physical layer functions.</p>
+			</article>
+			<article class="col-6 col-12-xsmall work-item">
+				<a href="images/fulls/join.PNG" class="image fit thumb"><img src="images/thumbs/join.PNG" alt="" /></a>
+				<h3>DNA join and content detection</h3>
+				<p>First steps of near storage compute in DNA data storage.</p>
+			</article>
+			<article class="col-6 col-12-xsmall work-item">
+				<a href="images/fulls/20211102_110224006_iOS conv.PNGj" class="image fit thumb"><img src="images/thumbs/20211102_110224006_iOS conv.PNG" alt="" /></a>
+				<h3><a href = "https://github.com/Omer-Sella/reedSolomon">Reed Solomon</a> </h3>
+				<p>Code for Reed Solomon Error Correcting Codes. RS codes are popular in storage applications and are the foundation for some RAID protocols. They are especially useful in storage that is spread over multiple disks or servers, since an indication that a server or a disk is down is considered an erasure rather than an error.</p>
+			</article>
+		</div>
+
+	</section>
+-->
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/Omer-Sella/" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/omersella/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<!--
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+						-->
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
