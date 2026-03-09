@@ -551,7 +551,6 @@ footer {
   <div class="nav-links">
     <a href="#about">about</a>
     <a href="#research">research</a>
-    <a href="#projects">projects</a>
     <a href="#publications">publications</a>
     <a href="#patents">patents</a>
     <a href="#contact">contact</a>
@@ -624,13 +623,7 @@ footer {
         My work is around taking concepts from theoretical information and coding theory and <strong>applying</strong> them to real world problems. It starts with understanding the underlying physical system (quartz glass, DNA, opto-electrical modules...) and asking what mathematical model best describes the system and its noise. Then there is a process of understanding which solutions / coding methods / algorithms can be useful and what are the constraints that will dictate the specific choice and implementation. This process is only as good as my understanding of the underlying problem and the desired outcome, and I have been very fortunate to work with (and be part of) many and varied teams, that often taught me a lot !.
       </p>
       <p>
-        I started in archival storage, exploring DNA as a medium for data that needs to last centuries. Fish make fish DNA, bananas make banana DNA — so what kind of DNA do we need to reliably store a video file for a thousand years?
-      </p>
-      <p>
-        The dominant challenge isn't synthesis — it's the <strong>channel model</strong>. Sequencing is unreliable on short homopolymer runs like ATGATGATG, insertions and deletions dominate over substitutions, and costs scale with sequence diversity. The right response isn't better hardware alone — it's smarter encoding.
-      </p>
-      <p>
-        More recently, I shifted my focus to <strong>quantum error correction</strong>. The problems are structurally parallel: both quantum channels and DNA channels demand sparse parity-check matrices, unusual noise models, and encoding constraints that go beyond textbook LDPC theory.
+        More recently, I shifted my focus to <strong>quantum error correction</strong>. I maintain a (growing, educational) repository that tries to introduce <a href="https://github.com/Omer-Sella/qecc">QECC</a> without going through quantum algorithms first (as I find most books do).
       </p>
     </div>
     <div class="terminal-block fade-in">
@@ -645,14 +638,12 @@ footer {
         <p><span class="kw">interests</span> = {</p>
         <br>
         <p>&nbsp;&nbsp;<span class="string">"quantum_error_correction"</span>: [</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"decoders"</span>,</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"constructions"</span>,</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"compilers"</span>,</p>
         <p>&nbsp;&nbsp;],</p>
         <br>
         <p>&nbsp;&nbsp;<span class="string">"LDPC"</span>: [</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"codes"</span>,</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"decoders"</span>,</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"constructions"</span>,</p>
         <p>&nbsp;&nbsp;],</p>
         <br>
@@ -662,14 +653,15 @@ footer {
         <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"multiplexing_nanopore_reading"</span>,</p>
         <p>&nbsp;&nbsp;],</p>
         <br>
-        <p>&nbsp;&nbsp;<span class="string">"RL_and_CUDA_accelerated_decoders"</span>: [</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"LDPC_constructions"</span>,</p>
+        <p>&nbsp;&nbsp;<span class="string">"Reinforcement_Learning_and_CUDA_accelerated_decoders"</span>: [</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Policy_Optimization"</span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"numba"</span>,</p>
         <p>&nbsp;&nbsp;],</p>
         <br>
         <p>}</p>
         <br>
         <p><span class="comment"># Current focus</span></p>
-        <p><span class="kw">active</span> = <span class="string">"qLDPC codes + stabilizer formalism"</span></p>
+        <p><span class="kw">active</span> = <span class="string">"qLDPC codes" + "multiplexed_DNA_reading"</span></p>
         <br>
         <p><span class="prompt">$</span> <span class="cmd">python run_research.py<span class="cursor"></span></span></p>
       </div>
@@ -696,7 +688,11 @@ footer {
       <div class="card-body">
         <div class="card-tag">Current Focus</div>
         <h3>Quantum Error Correction</h3>
-        <p>Quantum LDPC codes protect qubits from decoherence using sparse stabilizer measurements. My work bridges classical LDPC theory and quantum stabilizer formalism, building tools and intuitions for practitioners who know classical ECC but are new to the quantum setting.</p>
+        <p>We are in a super exciting time for Quantum LDPC codes! My work takes classical decoders for Error Correcting Codes and adapts them to the stabilizer formalism. I try to document my journey so that other experts in classical ECC could use my tools and intuition to make their own transition to the quantum setting.</p>
+        <a href="https://github.com/Omer-Sella/qecc" target="_blank" class="btn btn-secondary" style="margin-top:1rem; font-size:11px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          github.com/Omer-Sella/qecc ↗
+        </a>
       </div>
     </div>
 
@@ -709,6 +705,10 @@ footer {
         <div class="card-tag">Deep Reinforcement Learning</div>
         <h3>Learning LDPC Codes</h3>
         <p>Formulating the search for good Quasi-Cyclic LDPC codes as a Markov decision process — consecutive replacement of circulant sub-matrices — and using Proximal Policy Optimization to discover novel parity-check matrices that outperform handcrafted constructions.</p>
+        <a href="https://github.com/Omer-Sella/ldpc" target="_blank" class="btn btn-secondary" style="margin-top:1rem; font-size:11px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          github.com/Omer-Sella/ldpc ↗
+        </a>
       </div>
     </div>
 
@@ -733,114 +733,21 @@ footer {
         <div class="card-tag">Archival Storage</div>
         <h3>DNA Data Storage</h3>
         <p>Revisiting over two decades of Molecular Biology and Bioinformatics with data storage in mind. Designing encodings that avoid problematic sequences (homopolymers, low GC-content), reduce synthesis cost, and recover gracefully from insertion-deletion errors.</p>
+        <a href="https://github.com/Omer-Sella/Euclid" target="_blank" class="btn btn-secondary" style="margin-top:1rem; font-size:11px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          github.com/Omer-Sella/Euclid ↗
+        </a>
       </div>
     </div>
 
   </div>
 </section>
 
-<hr class="sep">
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-header fade-in">
-    <span class="section-num">03 //</span>
-    <h2>Code</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="project-list fade-in">
-
-    <a href="https://github.com/Omer-Sella/qecc" target="_blank" class="project-item">
-      <div class="project-info">
-        <h3>qecc</h3>
-        <p>Resources, code, and Jupyter notebooks to bridge classical error correcting code knowledge into the quantum domain. Covers quantum LDPC codes without requiring prior stabilizer formalism expertise.</p>
-      </div>
-      <div class="project-tags">
-        <span class="tag tag-purple">quantum</span>
-        <span class="tag tag-cyan">LDPC</span>
-        <span class="tag tag-green">Python</span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Omer-Sella/ldpc" target="_blank" class="project-item">
-      <div class="project-info">
-        <h3>ldpc — RL-Guided Code Design</h3>
-        <p>Using deep reinforcement learning (PPO) to search the space of Quasi-Cyclic LDPC codes. A CUDA-accelerated Min-Sum decoder evaluates candidate codes at speed, enabling tight feedback loops during training.</p>
-      </div>
-      <div class="project-tags">
-        <span class="tag tag-cyan">deep RL</span>
-        <span class="tag tag-amber">CUDA</span>
-        <span class="tag tag-green">Python</span>
-      </div>
-    </a>
-
-    <div class="project-item">
-      <div class="project-info">
-        <h3>cudaLDPC</h3>
-        <p>A fan-out / fan-in formulation of the Min-Sum belief propagation decoder written as CUDA kernels via NUMBA. Enables rapid consecutive evaluation of LDPC codes when only the parity matrix dimension is known.</p>
-      </div>
-      <div class="project-tags">
-        <span class="tag tag-amber">CUDA</span>
-        <span class="tag tag-amber">NUMBA</span>
-        <span class="tag tag-cyan">decoding</span>
-      </div>
-    </div>
-
-    <div class="project-item">
-      <div class="project-info">
-        <h3>Euclid</h3>
-        <p>A one-stop encoding pipeline for data onto DNA that accommodates multiple local biochemical constraints — including homopolymer limits and GC-content bounds — alongside selected global constraints.</p>
-      </div>
-      <div class="project-tags">
-        <span class="tag tag-green">DNA</span>
-        <span class="tag tag-green">encoding</span>
-      </div>
-    </div>
-
-    <a href="https://github.com/Omer-Sella/802.3" target="_blank" class="project-item">
-      <div class="project-info">
-        <h3>802.3</h3>
-        <p>Implementations and explorations of IEEE 802.3 Ethernet physical layer functions — a workbench for understanding the coding and signal processing that underpins modern wired networking.</p>
-      </div>
-      <div class="project-tags">
-        <span class="tag tag-amber">Ethernet</span>
-        <span class="tag tag-cyan">PHY</span>
-        <span class="tag tag-green">Python</span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Omer-Sella/reedSolomon" target="_blank" class="project-item">
-      <div class="project-info">
-        <h3>Reed-Solomon</h3>
-        <p>Clean implementations of Reed-Solomon error correcting codes. RS codes are the backbone of many storage RAID protocols; treating disk failure as an erasure rather than an error makes them remarkably efficient.</p>
-      </div>
-      <div class="project-tags">
-        <span class="tag tag-purple">RS codes</span>
-        <span class="tag tag-cyan">ECC</span>
-        <span class="tag tag-green">Python</span>
-      </div>
-    </a>
-
-    <div class="project-item">
-      <div class="project-info">
-        <h3>DNA Join & Content Detection</h3>
-        <p>Exploring near-storage compute in the DNA domain — performing join operations and content-based queries without ever fully sequencing the pool. Early steps toward DNA as a programmable storage medium.</p>
-      </div>
-      <div class="project-tags">
-        <span class="tag tag-green">DNA</span>
-        <span class="tag tag-amber">near-storage compute</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<hr class="sep">
 
 <!-- PUBLICATIONS -->
 <section id="publications">
   <div class="section-header fade-in">
-    <span class="section-num">04 //</span>
+    <span class="section-num">03 //</span>
     <h2>Publications</h2>
     <div class="section-line"></div>
   </div>
@@ -1005,7 +912,7 @@ footer {
 <!-- PATENTS -->
 <section id="patents">
   <div class="section-header fade-in">
-    <span class="section-num">05 //</span>
+    <span class="section-num">04 //</span>
     <h2>Patents</h2>
     <div class="section-line"></div>
   </div>
@@ -1047,7 +954,7 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header fade-in">
-    <span class="section-num">06 //</span>
+    <span class="section-num">05 //</span>
     <h2>Contact</h2>
     <div class="section-line"></div>
   </div>
