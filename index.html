@@ -1,146 +1,2205 @@
-<!DOCTYPE HTML>
-<!--
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Omer Sella</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omer Sella — Mathematics, Computing, Information Theory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c0f;
+  --bg2: #0f1217;
+  --bg3: #141820;
+  --panel: #161b24;
+  --border: #1e2733;
+  --border2: #253040;
+  --green: #00ff88;
+  --green2: #00cc6a;
+  --cyan: #00d4ff;
+  --amber: #ffb830;
+  --red: #ff4060;
+  --purple: #a855f7;
+  --text: #f0f6ff;
+  --text2: #b0c8e0;
+  --text3: #6a8099;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Syne', sans-serif;
+}
 
-		<!-- Header -->
-			<header id="header">
-				<div class="inner">
-					<a href="#" class="image avatar"><img src="images/MSR_0419_0450_N8A1207.jpg" alt="" /></a>
-					<h1>Omer Sella.<br>
-					<strong>Mathematics, computing, information theory.</strong> <br /></h1>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-				</div>
-			</header>
+html { scroll-behavior: smooth; }
 
-		<!-- Main -->
-			<div id="main">
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-				<!-- One -->
-					<section id="one">
-						<header class="major">
-							<h2>The things I do (and research)</h2>
-						</header>
-						<p>Fish make fish DNA, bananas make banana DNA, what kind of DNA do we need to make to store data ?
-<br />My work is around archival storage, i.e.: data that's written once and rarely accessed.<br/>
+/* SCANLINE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
 
-The state of the art in archival storage is magnetic tape (yeah still) and hard disk drives. Tape is actually amazing and is constantly improving, but not at the rate we pile up data (images, video, sensor data, financial records...). The two leading candidates to replace magnetic tape are glass and DNA.
+/* NOISE TEXTURE */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.4;
+}
 
-With DNA we are leveraging over 20 years of work in Molecular Biology and Bioinformatics. We are revisiting some of this work with data storage mind, for example: if sequencing is unreliable for small repeat sequences like ATGATGATG... then we can just encode the data to avoid that. So most of the time I try to understand processes in Molecular Biology and how can we use knowledge of the process to: lower the cost, improve write/read throughput, lower the probability of an error ...</p>
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 56px;
+  background: rgba(10,12,15,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
 
-					</section>
+.nav-logo {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--green);
+  letter-spacing: -0.5px;
+}
 
-				<!-- Two -->
-					<section id="two">
-						<h2>Code</h2>
-						<div class="row">
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/TannerExample.png" class="image fit thumb"><img src="images/thumbs/TannerExample.png" alt="" /></a>
-								<h3><a href = "https://github.com/Omer-Sella/ldpc">Learning LDPC codes</a></h3>
-								<p>Using deep reinforcement learning to learn LDPC codes. In this project we formulate the problem of finding a good Quaci-Cyclic LDPC code as a Markov decision problem (consecutive replacement of circulant sub-matrices) and use PPO to find new parity matrices.</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/decoderThroughputCUDA.png" class="image fit thumb"><img src="images/thumbs/decoderThroughputCUDA.png" alt="" /></a>
-								<h3>cudaLDPC </h3>
-								<p>A fan-out / fan-in formulation of the Min-Sum decoder written as CUDA kernels using NUMBA. This is the powerhouse that makes consecutive evaluation of LDPC codes possible when only the dimension of the parity matrix is known. </p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/euclid1.PNG" class="image fit thumb"><img src="images/thumbs/euclid1.PNG" alt="" /></a>
-								<h3>Euclid</h3>
-								<p>A one-stop-shop encoding for data onto DNA that can accommodate multiple local constraints... ...and some global ones.</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/8023.PNG" class="image fit thumb"><img src="images/thumbs/8023.PNG" alt="" /></a>
-								<h3><a href = "https://github.com/Omer-Sella/802.3" >802.3</a></h3>
-								<p>A space to develope 802.3 physical layer functions.</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/join.PNG" class="image fit thumb"><img src="images/thumbs/join.PNG" alt="" /></a>
-								<h3>DNA join and content detection</h3>
-								<p>First steps of near storage compute in DNA data storage.</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/20211102_110224006_iOS conv.png" class="image fit thumb"><img src="images/thumbs/20211102_110224006_iOS conv.png" alt="" /></a>
-								<h3><a href = "https://github.com/Omer-Sella/reedSolomon">Reed Solomon</a> </h3>
-								<p>Code for Reed Solomon Error Correcting Codes. RS codes are popular in storage applications and are the foundation for some RAID protocols. They are especially useful in storage that is spread over multiple disks or servers, since an indication that a server or a disk is down is considered an erasure rather than an error.</p>
-							</article>
-						</div>
+.nav-logo span { color: var(--text2); font-weight: 400; font-size: 13px; font-family: var(--mono); margin-left: 8px; }
 
-					</section>
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: var(--green);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+.nav-links a:hover { color: var(--green); }
+.nav-links a:hover::after { transform: scaleX(1); }
 
-	<!-- Two 
-	<section id="two">
-		<h2>Publications</h2>
-		<div class="row">
-			<article class="col-6 col-12-xsmall work-item">
-				<a href="images/fulls/TannerExample.PNG" class="image fit thumb"><img src="images/thumbs/TannerExample.PNG" alt="" /></a>
-				<h3><a href = "https://github.com/Omer-Sella/ldpc">Model compression for data-carrying-DNA sequencing.</a></h3>
-				<p>Nanopore sequencing uses a deep neural network to convert voltage signal to a textual DNA sequence. Using simple compression .</p>
-			</article>
-			<article class="col-6 col-12-xsmall work-item">
-				<a href="images/fulls/decoderThroughputCUDA.PNG" class="image fit thumb"><img src="images/thumbs/decoderThroughputCUDA.PNG" alt="" /></a>
-				<h3>cudaLDPC </h3>
-				<p>A fan-out / fan-in formulation of the Min-Sum decoder written as CUDA kernels using NUMBA. This is the power house that makes consecutive evaluation of LDPC codes possible, when only the dimension of the parity matrix is known. </p>
-			</article>
-			<article class="col-6 col-12-xsmall work-item">
-				<a href="images/fulls/euclid1.PNG" class="image fit thumb"><img src="images/thumbs/euclid1.PNG" alt="" /></a>
-				<h3>Euclid</h3>
-				<p>A one-stop-shop encoding for data onto DNA that can accomodate multiple local constraints... ...and some global ones.</p>
-			</article>
-			<article class="col-6 col-12-xsmall work-item">
-				<a href="images/fulls/8023.png" class="image fit thumb"><img src="images/thumbs/8023.png" alt="" /></a>
-				<h3><a href = "https://github.com/Omer-Sella/802.3" >802.3</a></h3>
-				<p>A space to develope 802.3 physical layer functions.</p>
-			</article>
-			<article class="col-6 col-12-xsmall work-item">
-				<a href="images/fulls/join.PNG" class="image fit thumb"><img src="images/thumbs/join.PNG" alt="" /></a>
-				<h3>DNA join and content detection</h3>
-				<p>First steps of near storage compute in DNA data storage.</p>
-			</article>
-			<article class="col-6 col-12-xsmall work-item">
-				<a href="images/fulls/20211102_110224006_iOS conv.PNGj" class="image fit thumb"><img src="images/thumbs/20211102_110224006_iOS conv.PNG" alt="" /></a>
-				<h3><a href = "https://github.com/Omer-Sella/reedSolomon">Reed Solomon</a> </h3>
-				<p>Code for Reed Solomon Error Correcting Codes. RS codes are popular in storage applications and are the foundation for some RAID protocols. They are especially useful in storage that is spread over multiple disks or servers, since an indication that a server or a disk is down is considered an erasure rather than an error.</p>
-			</article>
-		</div>
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 3rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
 
-	</section>
--->
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
 
-			</div>
+.hero-text { position: relative; z-index: 2; }
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="https://github.com/Omer-Sella/" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="https://www.linkedin.com/in/omersella/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						<!--
-						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-						-->
-					</ul>
-				</div>
-			</footer>
+.hero-tag {
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-tag::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--green);
+}
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+h1 {
+  font-family: var(--sans);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
 
-	</body>
+h1 .accent { color: var(--green); }
+h1 .dim { color: var(--text2); }
+
+.hero-desc {
+  color: var(--text2);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+.hero-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--green);
+  color: #000;
+}
+.btn-primary:hover { background: #00ffaa; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,255,136,0.3); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--border2);
+}
+.btn-secondary:hover { color: var(--text); border-color: var(--text3); }
+
+/* HERO ANIMATION CANVAS */
+.hero-canvas-wrapper {
+  position: relative;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#heroCanvas {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* SECTION LAYOUT */
+section {
+  padding: 6rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.section-num {
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.1em;
+}
+
+h2 {
+  font-family: var(--sans);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #fff;
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  margin-left: 1rem;
+}
+
+/* ABOUT */
+#about .about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.terminal-block {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r { background: #ff5f56; }
+.dot-y { background: #ffbd2e; }
+.dot-g { background: #27c93f; }
+
+.terminal-title {
+  font-size: 11px;
+  color: var(--text3);
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.05em;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text2);
+}
+
+.terminal-body .prompt { color: var(--green); }
+.terminal-body .cmd { color: var(--text); }
+.terminal-body .comment { color: var(--text3); }
+.terminal-body .string { color: var(--amber); }
+.terminal-body .kw { color: var(--cyan); }
+.terminal-body p { margin-bottom: 0.75rem; }
+
+.about-text p {
+  color: var(--text2);
+  margin-bottom: 1.25rem;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.about-text p strong { color: var(--text); }
+
+/* DNA ANIMATION CANVAS */
+#dnaCanvas {
+  border-radius: 6px;
+  display: block;
+}
+
+/* RESEARCH CARDS */
+#research .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.research-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.research-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+
+.card-canvas-wrap {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-body { padding: 1.5rem; }
+.card-tag {
+  font-size: 10px;
+  color: var(--green);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.card-body h3 {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+.card-body p { color: var(--text2); font-size: 12px; line-height: 1.8; }
+
+/* PROJECTS */
+#projects .project-list {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.project-item {
+  background: var(--panel);
+  padding: 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  transition: background 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-item:hover { background: var(--bg3); }
+
+.project-info h3 {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.project-info p { color: var(--text2); font-size: 12px; line-height: 1.6; }
+
+.project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.tag-green { background: rgba(0,255,136,0.08); color: var(--green); border: 1px solid rgba(0,255,136,0.15); }
+.tag-cyan { background: rgba(0,212,255,0.08); color: var(--cyan); border: 1px solid rgba(0,212,255,0.15); }
+.tag-amber { background: rgba(255,184,48,0.08); color: var(--amber); border: 1px solid rgba(255,184,48,0.15); }
+.tag-purple { background: rgba(168,85,247,0.08); color: var(--purple); border: 1px solid rgba(168,85,247,0.15); }
+
+/* PUBLICATIONS */
+#publications .pub-list { display: grid; gap: 1rem; }
+
+.pub-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: border-color 0.2s;
+}
+
+.pub-item:hover { border-color: var(--border2); }
+
+.pub-year {
+  font-size: 11px;
+  color: var(--green);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  min-width: 42px;
+  padding-top: 2px;
+}
+
+.pub-item-link { text-decoration: none; color: inherit; display: flex; }
+.pub-item-link:hover { border-color: var(--border2); background: var(--bg3); }
+.pub-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+
+.pub-content h4 {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.pub-content p { color: var(--text2); font-size: 12px; }
+
+/* CONTACT */
+#contact .contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.contact-links { display: grid; gap: 1rem; }
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text2);
+  transition: all 0.2s;
+  font-size: 13px;
+}
+
+.contact-link:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(0,255,136,0.04);
+}
+
+.contact-icon {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg3);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  text-align: center;
+  color: var(--text3);
+  font-size: 12px;
+}
+
+/* CURSOR BLINK */
+.cursor {
+  display: inline-block;
+  width: 8px; height: 14px;
+  background: var(--green);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* FADE IN */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* SEPARATOR */
+.sep {
+  border: none;
+  border-top: 1px solid var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .hero-grid, #about .about-grid, #contact .contact-grid { grid-template-columns: 1fr; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { gap: 1rem; }
+  section { padding: 4rem 1.5rem; }
+  #hero { padding: 80px 1.5rem 3rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">OS <span>// <a href = "omer-sella.github.io">omer-sella.github.io </a></span></div>
+  <div class="nav-links">
+    <a href="#about">about</a>
+    <a href="#research">research</a>
+    <a href="#projects">projects</a>
+    <a href="#publications">publications</a>
+    <a href="#patents">patents</a>
+    <a href="#contact">contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div style="width:100%; max-width:1200px; margin:0 auto;">
+
+    <!-- Top row: text left, Tanner graph right -->
+    <div class="hero-grid">
+      <div class="hero-text fade-in">
+        <div class="hero-tag">researcher · engineer · developer</div>
+        <h1>Omer<br><span class="accent">Sella</span><span class="dim">.</span></h1>
+        <p class="hero-desc">
+          Mathematics, computing, and information theory.
+          DNA-based archival data storage, high speed Ethernet, quantum error correction.
+          Modeling, simulation and hardware specific optimisation.
+        </p>
+        <div class="hero-links">
+          <a href="https://github.com/Omer-Sella/" target="_blank" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/omersella/" target="_blank" class="btn btn-secondary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="#research" class="btn btn-secondary">Research ↓</a>
+          <a href="https://www.hackerrank.com/profile/o_sella" target="_blank" class="btn btn-secondary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1.285 0 9.75 4.886 10.392 6 .645 1.115.645 11.885 0 13-.642 1.115-9.107 6-10.392 6-1.284 0-9.75-4.885-10.392-6C.963 17.885.963 7.115 1.608 6 2.25 4.886 10.715 0 12 0zm2.295 6.799c-.141 0-.258.115-.258.258v3.875H9.963V6.908c0-.189-.159-.307-.355-.258L7.42 7.344c-.173.044-.258.16-.258.307v9.205c0 .143.115.258.258.258h2.085c.143 0 .258-.115.258-.258V13.38h4.074v3.418c0 .188.159.307.355.258l2.189-.693c.173-.044.258-.16.258-.307V7.057c0-.143-.115-.258-.258-.258h-2.086z"/></svg>
+            HackerRank
+          </a>
+        </div>
+      </div>
+
+      <!-- Tanner graph right of intro -->
+      <div class="hero-canvas-wrapper fade-in">
+        <canvas id="heroCanvas" width="480" height="360"></canvas>
+      </div>
+    </div>
+
+    <!-- Nanopore animation full-width below -->
+    <div class="fade-in" style="margin-top:2.5rem;">
+      <div class="terminal-block">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="terminal-title">nanopore_sequencing.sim</span>
+        </div>
+        <canvas id="dnaCanvas" width="1160" height="320" style="width:100%; display:block;"></canvas>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-in">
+    <span class="section-num">01 //</span>
+    <h2>About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>
+        My work is around taking concepts from theoretical information and coding theory and <strong>applying</strong> them to real world problems. It starts with understanding the underlying physical system (quartz glass, DNA, opto-electrical modules...) and asking what mathematical model best describes the system and its noise. Then there is a process of understanding which solutions / coding methods / algorithms can be useful and what are the constraints that will dictate the specific choice and implementation. This process is only as good as my understanding of the underlying problem and the desired outcome, and I have been very fortunate to work with (and be part of) many and varied teams, that often taught me a lot !.
+      </p>
+      <p>
+        I started in archival storage, exploring DNA as a medium for data that needs to last centuries. Fish make fish DNA, bananas make banana DNA — so what kind of DNA do we need to reliably store a video file for a thousand years?
+      </p>
+      <p>
+        The dominant challenge isn't synthesis — it's the <strong>channel model</strong>. Sequencing is unreliable on short homopolymer runs like ATGATGATG, insertions and deletions dominate over substitutions, and costs scale with sequence diversity. The right response isn't better hardware alone — it's smarter encoding.
+      </p>
+      <p>
+        More recently, I shifted my focus to <strong>quantum error correction</strong>. The problems are structurally parallel: both quantum channels and DNA channels demand sparse parity-check matrices, unusual noise models, and encoding constraints that go beyond textbook LDPC theory.
+      </p>
+    </div>
+    <div class="terminal-block fade-in">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">research_interests.py</span>
+      </div>
+      <div class="terminal-body">
+        <p><span class="comment"># Core research areas</span></p>
+        <p><span class="kw">interests</span> = {</p>
+        <br>
+        <p>&nbsp;&nbsp;<span class="string">"quantum_error_correction"</span>: [</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"decoders"</span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"constructions"</span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"compilers"</span>,</p>
+        <p>&nbsp;&nbsp;],</p>
+        <br>
+        <p>&nbsp;&nbsp;<span class="string">"LDPC"</span>: [</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"codes"</span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"decoders"</span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"constructions"</span>,</p>
+        <p>&nbsp;&nbsp;],</p>
+        <br>
+        <p>&nbsp;&nbsp;<span class="string">"storage_of_binary_data_on_DNA"</span>: [</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"basecaller_optimisation"</span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"channel_coding"</span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"multiplexing_nanopore_reading"</span>,</p>
+        <p>&nbsp;&nbsp;],</p>
+        <br>
+        <p>&nbsp;&nbsp;<span class="string">"RL_and_CUDA_accelerated_decoders"</span>: [</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"LDPC_constructions"</span>,</p>
+        <p>&nbsp;&nbsp;],</p>
+        <br>
+        <p>}</p>
+        <br>
+        <p><span class="comment"># Current focus</span></p>
+        <p><span class="kw">active</span> = <span class="string">"qLDPC codes + stabilizer formalism"</span></p>
+        <br>
+        <p><span class="prompt">$</span> <span class="cmd">python run_research.py<span class="cursor"></span></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-header fade-in">
+    <span class="section-num">02 //</span>
+    <h2>Research</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cards">
+
+    <!-- QECC card -->
+    <div class="research-card fade-in">
+      <div class="card-canvas-wrap">
+        <canvas id="qeccCanvas" width="340" height="180"></canvas>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Current Focus</div>
+        <h3>Quantum Error Correction</h3>
+        <p>Quantum LDPC codes protect qubits from decoherence using sparse stabilizer measurements. My work bridges classical LDPC theory and quantum stabilizer formalism, building tools and intuitions for practitioners who know classical ECC but are new to the quantum setting.</p>
+      </div>
+    </div>
+
+    <!-- LDPC RL card -->
+    <div class="research-card fade-in">
+      <div class="card-canvas-wrap">
+        <canvas id="ldpcCanvas" width="340" height="180" style="display:block;"></canvas>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Deep Reinforcement Learning</div>
+        <h3>Learning LDPC Codes</h3>
+        <p>Formulating the search for good Quasi-Cyclic LDPC codes as a Markov decision process — consecutive replacement of circulant sub-matrices — and using Proximal Policy Optimization to discover novel parity-check matrices that outperform handcrafted constructions.</p>
+      </div>
+    </div>
+
+    <!-- Belief propagation / Tanner graph card -->
+    <div class="research-card fade-in">
+      <div class="card-canvas-wrap">
+        <canvas id="tannerCanvas" width="340" height="180" style="display:block;"></canvas>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Message Passing</div>
+        <h3>Belief Propagation Decoding</h3>
+        <p>LDPC codes are decoded via iterative message-passing on their Tanner graph — variable nodes and check nodes exchange soft-decision messages until the codeword converges. Understanding and accelerating this process is central to both classical and quantum LDPC work.</p>
+      </div>
+    </div>
+
+    <!-- DNA card -->
+    <div class="research-card fade-in">
+      <div class="card-canvas-wrap">
+        <canvas id="dnaResCanvas" width="340" height="180"></canvas>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Archival Storage</div>
+        <h3>DNA Data Storage</h3>
+        <p>Revisiting over two decades of Molecular Biology and Bioinformatics with data storage in mind. Designing encodings that avoid problematic sequences (homopolymers, low GC-content), reduce synthesis cost, and recover gracefully from insertion-deletion errors.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">03 //</span>
+    <h2>Code</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="project-list fade-in">
+
+    <a href="https://github.com/Omer-Sella/qecc" target="_blank" class="project-item">
+      <div class="project-info">
+        <h3>qecc</h3>
+        <p>Resources, code, and Jupyter notebooks to bridge classical error correcting code knowledge into the quantum domain. Covers quantum LDPC codes without requiring prior stabilizer formalism expertise.</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag tag-purple">quantum</span>
+        <span class="tag tag-cyan">LDPC</span>
+        <span class="tag tag-green">Python</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/Omer-Sella/ldpc" target="_blank" class="project-item">
+      <div class="project-info">
+        <h3>ldpc — RL-Guided Code Design</h3>
+        <p>Using deep reinforcement learning (PPO) to search the space of Quasi-Cyclic LDPC codes. A CUDA-accelerated Min-Sum decoder evaluates candidate codes at speed, enabling tight feedback loops during training.</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag tag-cyan">deep RL</span>
+        <span class="tag tag-amber">CUDA</span>
+        <span class="tag tag-green">Python</span>
+      </div>
+    </a>
+
+    <div class="project-item">
+      <div class="project-info">
+        <h3>cudaLDPC</h3>
+        <p>A fan-out / fan-in formulation of the Min-Sum belief propagation decoder written as CUDA kernels via NUMBA. Enables rapid consecutive evaluation of LDPC codes when only the parity matrix dimension is known.</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag tag-amber">CUDA</span>
+        <span class="tag tag-amber">NUMBA</span>
+        <span class="tag tag-cyan">decoding</span>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-info">
+        <h3>Euclid</h3>
+        <p>A one-stop encoding pipeline for data onto DNA that accommodates multiple local biochemical constraints — including homopolymer limits and GC-content bounds — alongside selected global constraints.</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag tag-green">DNA</span>
+        <span class="tag tag-green">encoding</span>
+      </div>
+    </div>
+
+    <a href="https://github.com/Omer-Sella/802.3" target="_blank" class="project-item">
+      <div class="project-info">
+        <h3>802.3</h3>
+        <p>Implementations and explorations of IEEE 802.3 Ethernet physical layer functions — a workbench for understanding the coding and signal processing that underpins modern wired networking.</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag tag-amber">Ethernet</span>
+        <span class="tag tag-cyan">PHY</span>
+        <span class="tag tag-green">Python</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/Omer-Sella/reedSolomon" target="_blank" class="project-item">
+      <div class="project-info">
+        <h3>Reed-Solomon</h3>
+        <p>Clean implementations of Reed-Solomon error correcting codes. RS codes are the backbone of many storage RAID protocols; treating disk failure as an erasure rather than an error makes them remarkably efficient.</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag tag-purple">RS codes</span>
+        <span class="tag tag-cyan">ECC</span>
+        <span class="tag tag-green">Python</span>
+      </div>
+    </a>
+
+    <div class="project-item">
+      <div class="project-info">
+        <h3>DNA Join & Content Detection</h3>
+        <p>Exploring near-storage compute in the DNA domain — performing join operations and content-based queries without ever fully sequencing the pool. Early steps toward DNA as a programmable storage medium.</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag tag-green">DNA</span>
+        <span class="tag tag-amber">near-storage compute</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header fade-in">
+    <span class="section-num">04 //</span>
+    <h2>Publications</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="pub-list fade-in">
+
+    <!-- 2025 -->
+    <a href="https://www.nature.com/articles/s41598-025-00001-0" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2025</span>
+      <div class="pub-content">
+        <h4>Trade-offs in Model Compression for Sequencing Data-Carrying DNA</h4>
+        <p>J. Quah, O. Sella, T. Heinis — Scientific Reports, 2025.</p>
+        <div class="pub-tags"><span class="tag tag-amber">Scientific Reports</span><span class="tag tag-green">DNA storage</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.biorxiv.org/content/10.1101/2025.07.27.667078" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2025</span>
+      <div class="pub-content">
+        <h4>Basecalling for DNA Storage</h4>
+        <p>A. Menon, S. Brunmayr, O. Sella, T. Heinis — bioRxiv, 2025.07.27.667078.</p>
+        <div class="pub-tags"><span class="tag tag-green">bioRxiv</span><span class="tag tag-green">DNA storage</span></div>
+      </div>
+    </a>
+
+    <a href="https://arxiv.org/abs/2507.10424" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2025</span>
+      <div class="pub-content">
+        <h4>A Mapping of the Min-Sum Decoder to Reduction Operations, and its Implementation Using CUDA Kernels</h4>
+        <p>O. S. Sella, T. Heinis — arXiv preprint arXiv:2507.10424.</p>
+        <div class="pub-tags"><span class="tag tag-green">arXiv</span><span class="tag tag-amber">CUDA</span><span class="tag tag-cyan">decoding</span></div>
+      </div>
+    </a>
+
+    <a href="https://dl.acm.org/doi/10.1145/3708996" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2025</span>
+      <div class="pub-content">
+        <h4>Project Silica: Towards Sustainable Cloud Archival Storage in Glass</h4>
+        <p>P. Anderson, et al. (incl. O. Sella) — ACM Transactions on Storage, Vol. 21(1), pp. 1–31.</p>
+        <div class="pub-tags"><span class="tag tag-amber">ACM ToS</span><span class="tag tag-cyan">glass storage</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.usenix.org/conference/fast25/presentation/brunmayr" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2025</span>
+      <div class="pub-content">
+        <h4>DNA Data Storage: A Generative Tool for Motif-Based DNA Storage</h4>
+        <p>S. Brunmayr, O. S. Sella, T. Heinis — 23rd USENIX FAST '25, pp. 573–581.</p>
+        <div class="pub-tags"><span class="tag tag-amber">FAST '25</span><span class="tag tag-green">DNA storage</span></div>
+      </div>
+    </a>
+
+    <!-- 2024 -->
+    <div class="pub-item">
+      <span class="pub-year">2024</span>
+      <div class="pub-content">
+        <h4>DNA Data Storage: A Generative Tool for Data Encoding Motifs</h4>
+        <p>S. Brunmayr, O. S. Sella, T. Heinis — 2024 (workshop / extended abstract, precursor to FAST '25).</p>
+        <div class="pub-tags"><span class="tag tag-green">DNA storage</span><span class="tag tag-cyan">encoding</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2024</span>
+      <div class="pub-content">
+        <h4>Coding for Emerging Archival Storage Media</h4>
+        <p>O. Sella — PhD Thesis, University of Cambridge, 2024.</p>
+        <div class="pub-tags"><span class="tag tag-purple">PhD Thesis</span><span class="tag tag-cyan">archival storage</span></div>
+      </div>
+    </div>
+
+    <!-- 2023 -->
+    <a href="https://doi.org/10.1145/3600006.3613208" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2023</span>
+      <div class="pub-content">
+        <h4>Project Silica: Towards Sustainable Cloud Archival Storage in Glass</h4>
+        <p>P. Anderson, et al. (incl. O. Sella) — 29th ACM SOSP '23, Koblenz, Germany.</p>
+        <div class="pub-tags"><span class="tag tag-amber">SOSP '23</span><span class="tag tag-cyan">glass storage</span></div>
+      </div>
+    </a>
+
+    <!-- 2022 -->
+    <a href="https://doi.org/10.1007/978-3-662-66863-4_7" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2022</span>
+      <div class="pub-content">
+        <h4>Digital Preservation with Synthetic DNA</h4>
+        <p>E. Marinelli, E. Ghabach, Y. Yan, T. Bolbroe, O. Sella, T. Heinis, R. Appuswamy — Transactions on Large-Scale Data- and Knowledge-Centered Systems LI (Special Issue).</p>
+        <div class="pub-tags"><span class="tag tag-amber">TLDKS</span><span class="tag tag-green">DNA storage</span></div>
+      </div>
+    </a>
+
+    <a href="https://arxiv.org/abs/2205.05488" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2022</span>
+      <div class="pub-content">
+        <h4>DNA Data Storage, Sequencing Data-Carrying DNA</h4>
+        <p>J. Quah, O. Sella, T. Heinis — arXiv preprint arXiv:2205.05488.</p>
+        <div class="pub-tags"><span class="tag tag-green">arXiv</span><span class="tag tag-green">DNA storage</span></div>
+      </div>
+    </a>
+
+    <!-- 2021 -->
+    <a href="https://doi.org/10.1145/3465332.3470880" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2021</span>
+      <div class="pub-content">
+        <h4>DNA Archival Storage: A Bottom Up Approach</h4>
+        <p>O. S. Sella, A. Apelbaum, T. Heinis, J. Quah, A. W. Moore — ACM HotStorage '21.</p>
+        <div class="pub-tags"><span class="tag tag-amber">HotStorage '21</span><span class="tag tag-green">DNA storage</span></div>
+      </div>
+    </a>
+
+    <div class="pub-item">
+      <span class="pub-year">2021</span>
+      <div class="pub-content">
+        <h4>DNA4DNA: Preserving Culturally Significant Digital Data with Synthetic DNA</h4>
+        <p>E. Marinelli, E. Ghabach, T. Bolbroe, O. Sella, T. Heinis, R. Appuswamy — iPRES 2021.</p>
+        <div class="pub-tags"><span class="tag tag-amber">iPRES '21</span><span class="tag tag-green">DNA storage</span></div>
+      </div>
+    </div>
+
+    <!-- 2018 -->
+    <a href="https://doi.org/10.1145/3229574.3229577" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2018</span>
+      <div class="pub-content">
+        <h4>FEC Killed The Cut-Through Switch</h4>
+        <p>O. S. Sella, A. W. Moore, N. Zilberman — NEAT@SIGCOMM '18, pp. 15–20.</p>
+        <div class="pub-tags"><span class="tag tag-purple">NEAT@SIGCOMM '18</span><span class="tag tag-cyan">networking</span></div>
+      </div>
+    </a>
+
+    <a href="https://doi.org/10.1145/3234200.3234227" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year">2018</span>
+      <div class="pub-content">
+        <h4>High Speed Adaptive Rack-Scale Fabrics</h4>
+        <p>O. S. Sella, A. W. Moore, N. Zilberman — ACM SIGCOMM Posters and Demos 2018, pp. 33–35.</p>
+        <div class="pub-tags"><span class="tag tag-purple">SIGCOMM '18</span><span class="tag tag-cyan">networking</span></div>
+      </div>
+    </a>
+
+    <!-- Undated -->
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div class="pub-content">
+        <h4>Equivariance and Symmetries in CNNs</h4>
+        <p>J. Allingham, O. Sella — Unpublished / manuscript.</p>
+        <div class="pub-tags"><span class="tag tag-purple">deep learning</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;" class="fade-in">
+    <p style="color:var(--text3); font-size:12px;">Sorted by year, most recent first. Click any entry to view on publisher site.</p>
+    <a href="https://scholar.google.com/citations?user=oss22&sortby=pubdate" target="_blank" class="btn btn-secondary" style="font-size:11px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+      View full list on Google Scholar ↗
+    </a>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- PATENTS -->
+<section id="patents">
+  <div class="section-header fade-in">
+    <span class="section-num">05 //</span>
+    <h2>Patents</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="pub-list fade-in">
+
+    <a href="https://patents.google.com/patent/US10593064B2" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year" style="min-width:80px; font-size:10px; letter-spacing:0.04em;">US10593064B2</span>
+      <div class="pub-content">
+        <h4>Dynamic Depth Camera System Calibration Using Mobile Display Device</h4>
+        <p>Omer Sella et al. — Granted, United States Patent.</p>
+        <div class="pub-tags"><span class="tag tag-amber">granted</span><span class="tag tag-cyan">computer vision</span></div>
+      </div>
+    </a>
+
+    <a href="https://patents.google.com/patent/US9344117B2" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year" style="min-width:80px; font-size:10px; letter-spacing:0.04em;">US9344117B2</span>
+      <div class="pub-content">
+        <h4>Methods and Systems for Error-Correction Decoding</h4>
+        <p>Omer Sella et al. — Granted, United States Patent.</p>
+        <div class="pub-tags"><span class="tag tag-amber">granted</span><span class="tag tag-purple">ECC</span><span class="tag tag-cyan">decoding</span></div>
+      </div>
+    </a>
+
+    <a href="https://patents.google.com/patent/US10127234B2" target="_blank" class="pub-item pub-item-link">
+      <span class="pub-year" style="min-width:80px; font-size:10px; letter-spacing:0.04em;">US10127234B2</span>
+      <div class="pub-content">
+        <h4>Offloading Node CPU in Distributed Redundant Storage Systems</h4>
+        <p>Omer Sella et al. — Granted, United States Patent.</p>
+        <div class="pub-tags"><span class="tag tag-amber">granted</span><span class="tag tag-green">storage</span><span class="tag tag-cyan">distributed systems</span></div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-in">
+    <span class="section-num">06 //</span>
+    <h2>Contact</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="fade-in">
+      <p style="color:var(--text2); font-size:13px; line-height:1.9; margin-bottom:1.5rem;">
+        I'm always interested in collaborating on quantum systems, long term storage of binary data, and new computing paradigms. Feel free to reach out !
+      </p>
+      <div class="terminal-block">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="terminal-title">status.sh</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="prompt">$</span> <span class="cmd">echo $STATUS</span></p>
+          <p><span class="string">open_to_collaborations=true</span></p>
+          <p><span class="string">research_focus=quantum_ecc</span></p>
+          <p><span class="prompt">$</span> <span class="cursor"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-links fade-in">
+      <a href="https://github.com/Omer-Sella/" target="_blank" class="contact-link">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </div>
+        github.com/Omer-Sella
+      </a>
+      <a href="https://www.linkedin.com/in/omersella/" target="_blank" class="contact-link">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        linkedin.com/in/omersella
+      </a>
+      <a href="https://www.hackerrank.com/profile/o_sella" target="_blank" class="contact-link">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1.285 0 9.75 4.886 10.392 6 .645 1.115.645 11.885 0 13-.642 1.115-9.107 6-10.392 6-1.284 0-9.75-4.885-10.392-6C.963 17.885.963 7.115 1.608 6 2.25 4.886 10.715 0 12 0zm2.295 6.799c-.141 0-.258.115-.258.258v3.875H9.963V6.908c0-.189-.159-.307-.355-.258L7.42 7.344c-.173.044-.258.16-.258.307v9.205c0 .143.115.258.258.258h2.085c.143 0 .258-.115.258-.258V13.38h4.074v3.418c0 .188.159.307.355.258l2.189-.693c.173-.044.258-.16.258-.307V7.057c0-.143-.115-.258-.258-.258h-2.086z"/></svg>
+        </div>
+        hackerrank.com/o_sella
+      </a>
+      <a href="https://github.com/Omer-Sella/qecc" target="_blank" class="contact-link">
+        <div class="contact-icon" style="font-size:14px;">⚛</div>
+        Quantum ECC Repository
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="margin-bottom:0.25rem;">Omer Sella — Mathematics · Computing · Information Theory</p>
+  <p>Built with HTML/CSS/JS · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+// ============================================================
+// TANNER GRAPH — runs on heroCanvas (hero) and tannerCanvas (research card)
+// ============================================================
+function startTannerGraph(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const GREEN = '#00ff88', CYAN = '#00d4ff', AMBER = '#ffb830', DIM = '#1e2733', TEXT2 = '#3d5068';
+  const N_VAR = 8, N_CHK = 5;
+
+  const varNodes = Array.from({length: N_VAR}, (_, i) => ({
+    x: 60 + i * (W - 120) / (N_VAR - 1),
+    y: H * 0.28,
+    active: false, pulse: 0, label: `v${i}`
+  }));
+
+  const chkNodes = Array.from({length: N_CHK}, (_, i) => ({
+    x: 100 + i * (W - 200) / (N_CHK - 1),
+    y: H * 0.72,
+    active: false, pulse: 0, label: `c${i}`
+  }));
+
+  // Sparse connections (LDPC-style)
+  const edges = [
+    [0,0],[0,1],[1,1],[1,2],[2,2],[2,3],[3,0],[3,3],[4,1],[4,4],
+    [5,2],[5,4],[6,3],[6,4],[7,0],[7,1],[2,4],[4,3]
+  ];
+
+  let t = 0;
+  // Message passing animation state
+  let msgState = 0, msgTimer = 0;
+  let activeEdges = new Set();
+  let activeMsgDir = new Map(); // edge -> {t, dir}
+
+  function pickRandomEdges(n) {
+    const picked = new Set();
+    while (picked.size < n) picked.add(Math.floor(Math.random() * edges.length));
+    return picked;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Background grid
+    ctx.strokeStyle = DIM;
+    ctx.lineWidth = 0.5;
+    for (let x = 0; x < W; x += 40) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y < H; y += 40) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    // Label row headers
+    ctx.fillStyle = TEXT2;
+    ctx.font = '10px JetBrains Mono';
+    ctx.fillText('variable nodes', 16, varNodes[0].y - 20);
+    ctx.fillText('check nodes', 16, chkNodes[0].y + 30);
+
+    // Draw edges
+    edges.forEach(([v, c], i) => {
+      const vn = varNodes[v], cn = chkNodes[c];
+      const isActive = activeEdges.has(i);
+      const msg = activeMsgDir.get(i);
+
+      ctx.beginPath();
+      ctx.moveTo(vn.x, vn.y);
+      ctx.lineTo(cn.x, cn.y);
+
+      if (isActive) {
+        ctx.strokeStyle = CYAN;
+        ctx.lineWidth = 1.5;
+        ctx.globalAlpha = 0.5;
+      } else {
+        ctx.strokeStyle = DIM;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.8;
+      }
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Animated message particle
+      if (msg) {
+        const p = msg.t;
+        const px = msg.dir === 'vc' ? vn.x + (cn.x - vn.x) * p : cn.x + (vn.x - cn.x) * p;
+        const py = msg.dir === 'vc' ? vn.y + (cn.y - vn.y) * p : cn.y + (vn.y - cn.y) * p;
+        const col = msg.dir === 'vc' ? GREEN : AMBER;
+        ctx.beginPath();
+        ctx.arc(px, py, 4, 0, Math.PI * 2);
+        ctx.fillStyle = col;
+        ctx.shadowColor = col;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    });
+
+    // Draw variable nodes
+    varNodes.forEach((n, i) => {
+      const glow = n.pulse > 0 ? n.pulse : 0;
+      if (glow > 0) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 14 + glow * 6, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0,255,136,${glow * 0.15})`;
+        ctx.fill();
+      }
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 10, 0, Math.PI * 2);
+      ctx.fillStyle = n.active ? GREEN : '#0f1a28';
+      ctx.strokeStyle = n.active ? GREEN : '#253040';
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = n.active ? GREEN : 'transparent';
+      ctx.shadowBlur = n.active ? 12 : 0;
+      ctx.fill(); ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = n.active ? '#000' : TEXT2;
+      ctx.font = '9px JetBrains Mono';
+      ctx.textAlign = 'center';
+      ctx.fillText(n.label, n.x, n.y + 3.5);
+    });
+
+    // Draw check nodes (squares)
+    chkNodes.forEach((n, i) => {
+      const glow = n.pulse > 0 ? n.pulse : 0;
+      const s = 11;
+      if (glow > 0) {
+        ctx.fillStyle = `rgba(0,212,255,${glow * 0.15})`;
+        ctx.fillRect(n.x - s - glow * 5, n.y - s - glow * 5, (s + glow * 5) * 2, (s + glow * 5) * 2);
+      }
+      ctx.fillStyle = n.active ? CYAN : '#0f1a28';
+      ctx.strokeStyle = n.active ? CYAN : '#253040';
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = n.active ? CYAN : 'transparent';
+      ctx.shadowBlur = n.active ? 12 : 0;
+      ctx.fillRect(n.x - s, n.y - s, s * 2, s * 2);
+      ctx.strokeRect(n.x - s, n.y - s, s * 2, s * 2);
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = n.active ? '#000' : TEXT2;
+      ctx.font = '9px JetBrains Mono';
+      ctx.textAlign = 'center';
+      ctx.fillText(n.label, n.x, n.y + 3.5);
+    });
+
+    // Legend
+    ctx.textAlign = 'left';
+    ctx.font = '10px JetBrains Mono';
+    ctx.fillStyle = GREEN; ctx.fillText('● msg: v→c', W - 150, H - 30);
+    ctx.fillStyle = AMBER; ctx.fillText('● msg: c→v', W - 150, H - 14);
+    ctx.fillStyle = TEXT2; ctx.fillText('Tanner Graph — Belief Propagation', 10, H - 10);
+  }
+
+  function animate() {
+    t += 0.016;
+    msgTimer++;
+
+    // Pulse decay
+    varNodes.forEach(n => { if (n.pulse > 0) n.pulse -= 0.04; });
+    chkNodes.forEach(n => { if (n.pulse > 0) n.pulse -= 0.04; });
+
+    // Advance message particles
+    activeMsgDir.forEach((msg, i) => {
+      msg.t += 0.022;
+      if (msg.t >= 1) {
+        activeMsgDir.delete(i);
+        activeEdges.delete(i);
+        // activate destination
+        const [v, c] = edges[i];
+        if (msg.dir === 'vc') { chkNodes[c].active = true; chkNodes[c].pulse = 1; }
+        else { varNodes[v].active = true; varNodes[v].pulse = 1; }
+      }
+    });
+
+    // Every ~80 frames, trigger a new batch
+    if (msgTimer % 80 === 0) {
+      const picked = pickRandomEdges(3);
+      const dir = msgTimer % 160 < 80 ? 'vc' : 'cv';
+      // reset all nodes
+      varNodes.forEach(n => n.active = false);
+      chkNodes.forEach(n => n.active = false);
+
+      picked.forEach(i => {
+        activeEdges.add(i);
+        activeMsgDir.set(i, { t: 0, dir });
+        const [v, c] = edges[i];
+        if (dir === 'vc') { varNodes[v].active = true; varNodes[v].pulse = 0.6; }
+        else { chkNodes[c].active = true; chkNodes[c].pulse = 0.6; }
+      });
+    }
+
+    draw();
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+startTannerGraph('heroCanvas');
+startTannerGraph('tannerCanvas');
+
+
+
+// ============================================================
+// DNA CANVAS — Nanopore sequencing animation
+// Left:  strand descends from above membrane, through pore, exits below
+//        squiggle strip at bottom with per-base coloured boundary markers
+// Right: same squiggle with markers → tokenise → Conv+Transformer → CTC → bases
+// ============================================================
+(function() {
+  const canvas = document.getElementById('dnaCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const GREEN = '#00ff88', CYAN = '#00d4ff', AMBER = '#ffb830', PURPLE = '#a855f7';
+  const DIM = '#1e2733', BG = '#0a0c0f', TEXT3 = '#3d5068';
+
+  const BASE_COL     = { A: GREEN,  T: CYAN,  G: AMBER,  C: PURPLE };
+  // Blockade levels: how much the base occludes ion flow (1.0 = max current, 0.2 = mostly blocked)
+  const BASE_CURRENT = { A: 0.78,   T: 0.50,  G: 0.27,   C: 0.60  };
+
+  // ─── Layout ──────────────────────────────────────────────
+  const SPLIT = Math.floor(W * 0.30);   // left panel: pore scene
+  const SX = SPLIT + 1, SW = W - SX;
+
+  // ─── Sequence ────────────────────────────────────────────
+  const BASES = ['A','T','G','C'];
+  const SEQ_LEN = 300;
+  const seq = Array.from({length: SEQ_LEN}, () => BASES[Math.floor(Math.random()*4)]);
+
+  // ─── Membrane / pore geometry ────────────────────────────
+  const MEM_Y  = Math.floor(H * 0.38);   // vertical centre of membrane — higher to show more exited strand
+  const MEM_H  = 15;                      // half-thickness of bilayer
+  const PORE_X = Math.floor(SPLIT * 0.5);
+  const PORE_R = 8;                       // half-width of channel
+
+  // ─── Strand motion ───────────────────────────────────────
+  // Base i sits at:  y_i = TOP_ANCHOR + i*SPACING − strandPx
+  // Strand scrolls downward (strandPx increases).
+  // TOP_ANCHOR chosen so base 0 starts at y≈0 when strandPx=0.
+  const SPACING      = 20;          // px between consecutive bases
+  const PX_PER_FRAME = 0.38;
+  let strandPx       = 0;
+  // We want base-0 to appear at the very top of the canvas initially:
+  const TOP_ANCHOR   = 8;           // base-0 y when strandPx=0
+
+  // ─── Squiggle strip (bottom of left panel) ───────────────
+  const SQ_H   = 56;                // height of strip
+  const SQ_Y   = H - SQ_H - 2;     // top-y of strip
+  const SQ_LEN = SPLIT - 4;        // pixel width of signal buffer
+  let squigBuf  = new Float32Array(SQ_LEN).fill(0.5);
+  let noisePhase = 0;
+
+  // ─── Per-base segment tracking (squig buffer x-coords) ───
+  // Each segment: { base, col, xL, xR }
+  // xL / xR are pixel indices into squigBuf (0 = leftmost / oldest).
+  // New data arrives at the RIGHT (index SQ_LEN-1). Each frame everything
+  // shifts left by 1, so we also decrement xL/xR by 1 each frame.
+  let sqSegs  = [];     // closed segments (xR known)
+  let sqOpen  = null;   // current open segment (xR = SQ_LEN-1 always, growing)
+
+  // ─── Right-panel trace ───────────────────────────────────
+  const RT_LEN  = 320;
+  let rTrace    = new Float32Array(RT_LEN).fill(0.5);
+  let rTracePtr = 0;    // circular write pointer
+
+  // Per-base segment positions in rTrace (in rTracePtr space)
+  let rtSegs = [];   // { base, col, ptrStart, ptrEnd? }
+
+  // ─── Decoded bases & model ───────────────────────────────
+  let decodedBases = [];
+  let lastPbi      = -1;
+  let nnFlash      = 0;
+
+  // Token groups
+  const TOK_W = 12;
+  let tokenGroups = [];
+
+  // Model layers schematic
+  const LAYERS = [
+    { label:'Conv1d',      type:'conv' },
+    { label:'Transformer', type:'xfm'  },
+    { label:'Transformer', type:'xfm'  },
+    { label:'CTC',         type:'ctc'  },
+  ];
+
+  // ─── Ions ────────────────────────────────────────────────
+  let ions = Array.from({length:10}, () => newIon());
+  function newIon() {
+    return {
+      x:  PORE_X + (Math.random()-0.5)*PORE_R*1.4,
+      y:  Math.random()*H,
+      vy: 0.45 + Math.random()*0.5,
+      r:  1.1 + Math.random()*1.1,
+      a:  0.28 + Math.random()*0.32
+    };
+  }
+
+  // ─── Helpers ─────────────────────────────────────────────
+  function pbi() {
+    // Which base index is centred at pore?
+    const raw = Math.round((strandPx + MEM_Y - TOP_ANCHOR) / SPACING);
+    return ((raw % SEQ_LEN) + SEQ_LEN) % SEQ_LEN;
+  }
+  function baseY(i) { return TOP_ANCHOR + i * SPACING - strandPx; }
+
+  // ─── Draw: membrane ──────────────────────────────────────
+  function drawMembrane() {
+    const y1 = MEM_Y - MEM_H, y2 = MEM_Y + MEM_H;
+    // Bilayer fill
+    const g = ctx.createLinearGradient(0, y1-4, 0, y2+4);
+    g.addColorStop(0,   'rgba(0,212,255,0.03)');
+    g.addColorStop(0.5, 'rgba(0,212,255,0.13)');
+    g.addColorStop(1,   'rgba(0,212,255,0.03)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, y1-4, SPLIT, (MEM_H+4)*2);
+    // Bilayer edges (gap at pore)
+    ctx.strokeStyle = 'rgba(0,212,255,0.28)'; ctx.lineWidth = 1;
+    for (const y of [y1, y2]) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(PORE_X-PORE_R-3, y); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(PORE_X+PORE_R+3, y); ctx.lineTo(SPLIT, y); ctx.stroke();
+    }
+    // Phospholipid head dots
+    ctx.fillStyle = 'rgba(0,212,255,0.22)';
+    for (let x = 5; x < SPLIT; x += 11) {
+      if (Math.abs(x - PORE_X) < PORE_R+6) continue;
+      ctx.beginPath(); ctx.arc(x, y1, 1.7, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(x, y2, 1.7, 0, Math.PI*2); ctx.fill();
+    }
+  }
+
+  // ─── Draw: pore barrel ───────────────────────────────────
+  function drawPoreBarrel() {
+    const top = MEM_Y - MEM_H - 3, bot = MEM_Y + MEM_H + 3;
+    const pw = PORE_R + 7;
+    for (const side of [-1, 1]) {
+      const bx = PORE_X + side * pw;
+      ctx.beginPath();
+      ctx.moveTo(bx + side*3, top);
+      ctx.bezierCurveTo(bx+side*3, MEM_Y-2, bx-side*2, MEM_Y-1, bx-side*2, MEM_Y);
+      ctx.bezierCurveTo(bx-side*2, MEM_Y+1, bx+side*3, MEM_Y+2, bx+side*3, bot);
+      ctx.lineTo(bx, bot);
+      ctx.bezierCurveTo(bx, MEM_Y+2, bx-side*5, MEM_Y+1, bx-side*5, MEM_Y);
+      ctx.bezierCurveTo(bx-side*5, MEM_Y-1, bx, MEM_Y-2, bx, top);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(168,85,247,0.14)';
+      ctx.strokeStyle = 'rgba(168,85,247,0.40)';
+      ctx.lineWidth = 1;
+      ctx.fill(); ctx.stroke();
+    }
+    // Dark channel interior
+    ctx.fillStyle = 'rgba(4,7,11,0.92)';
+    ctx.fillRect(PORE_X - PORE_R, top, PORE_R*2, bot - top);
+  }
+
+  // ─── Draw: ions ──────────────────────────────────────────
+  function drawIons() {
+    const level = BASE_CURRENT[seq[pbi()]];
+    for (const ion of ions) {
+      if (Math.random() > level * 1.1) continue;
+      ctx.beginPath(); ctx.arc(ion.x, ion.y, ion.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(0,212,255,${ion.a * level})`; ctx.fill();
+    }
+  }
+  function updateIons() {
+    for (const ion of ions) {
+      ion.y += ion.vy;
+      if (ion.y > H + 4) { Object.assign(ion, newIon()); ion.y = -4; }
+    }
+  }
+
+  // ─── Draw: strand ────────────────────────────────────────
+  // Bases above membrane = unread (bright), in pore = active (glowing), below = already-read (dim, offset right)
+  function drawStrand() {
+    const curPbi = pbi();
+    const vis = [];
+    for (let i = 0; i < SEQ_LEN; i++) {
+      const y = baseY(i);
+      if (y < -SPACING * 2) continue;
+      if (y > SQ_Y + SPACING) break;
+      vis.push({ base: seq[i], y, i });
+    }
+    if (vis.length < 2) return;
+
+    ctx.save();
+    ctx.beginPath(); ctx.rect(0, 0, SPLIT, SQ_Y); ctx.clip();
+
+    // Backbone: straight above pore, slight rightward drift below (already-read)
+    const exitX = PORE_X + 8;
+    ctx.beginPath();
+    ctx.moveTo(PORE_X, vis[0].y);
+    for (const n of vis) {
+      const belowMem = n.y > MEM_Y + MEM_H + 3;
+      ctx.lineTo(belowMem ? exitX : PORE_X, n.y);
+    }
+    ctx.strokeStyle = 'rgba(200,216,232,0.14)';
+    ctx.lineWidth = 1.5; ctx.stroke();
+
+    for (const { base, y, i } of vis) {
+      const inPore   = i === curPbi;
+      const inBarrel = y >= MEM_Y - MEM_H - 3 && y <= MEM_Y + MEM_H + 3;
+      const belowMem = y > MEM_Y + MEM_H + 3;
+      if (inBarrel && !inPore) continue;
+
+      const col   = BASE_COL[base];
+      const xDraw = belowMem ? exitX : PORE_X;
+
+      if (inPore) {
+        ctx.shadowColor = col; ctx.shadowBlur = 18;
+        ctx.beginPath(); ctx.arc(PORE_X, y, 8, 0, Math.PI * 2);
+        ctx.fillStyle = col; ctx.strokeStyle = col; ctx.lineWidth = 2;
+        ctx.fill(); ctx.stroke();
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#000';
+        ctx.font = 'bold 9px JetBrains Mono'; ctx.textAlign = 'center';
+        ctx.fillText(base, PORE_X, y + 3.5);
+      } else if (belowMem) {
+        // Already-read: dimmer, slightly offset to show the strand has exited
+        ctx.globalAlpha = 0.32;
+        ctx.beginPath(); ctx.arc(xDraw, y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = '#0c1620'; ctx.strokeStyle = col; ctx.lineWidth = 0.8;
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = col;
+        ctx.font = 'bold 6px JetBrains Mono'; ctx.textAlign = 'center';
+        ctx.fillText(base, xDraw, y + 2.5);
+        ctx.globalAlpha = 1;
+      } else {
+        // Unread: normal
+        ctx.beginPath(); ctx.arc(PORE_X, y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#0c1620'; ctx.strokeStyle = col; ctx.lineWidth = 1;
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = col;
+        ctx.font = 'bold 7px JetBrains Mono'; ctx.textAlign = 'center';
+        ctx.fillText(base, PORE_X, y + 3);
+      }
+    }
+    ctx.restore();
+  }
+
+  // ─── Draw: squiggle strip ────────────────────────────────
+  function drawSquiggleStrip() {
+    const ox = 2, py = SQ_Y, pw = SQ_LEN, ph = SQ_H - 4;
+    const sigTop = py + 14, sigH = ph - 16;  // signal drawing area
+    const step   = pw / (SQ_LEN - 1);
+
+    // Background box
+    ctx.fillStyle = 'rgba(6,10,16,0.94)';
+    ctx.fillRect(ox, py, pw, ph + 4);
+    ctx.strokeStyle = 'rgba(0,212,255,0.16)'; ctx.lineWidth = 0.8;
+    ctx.strokeRect(ox, py, pw, ph + 4);
+
+    // Label
+    ctx.font = '8px JetBrains Mono'; ctx.fillStyle = 'rgba(0,212,255,0.38)'; ctx.textAlign = 'left';
+    ctx.fillText('squiggle', ox + 3, py + 11);
+
+    // Animated dashed line: pore exit → squiggle strip top (signal is "flowing down")
+    const lx = PORE_X, ly1 = MEM_Y + MEM_H + 4, ly2 = py;
+    const dashOff = -(Date.now() * 0.045 % 9);
+    ctx.save();
+    ctx.setLineDash([4, 5]); ctx.lineDashOffset = dashOff;
+    ctx.strokeStyle = 'rgba(0,212,255,0.20)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(lx, ly1); ctx.lineTo(lx, ly2); ctx.stroke();
+    ctx.setLineDash([]); ctx.restore();
+
+    // Travelling dot along the dashed line
+    const dotT   = (Date.now() * 0.00088) % 1;
+    const dotY   = ly1 + dotT * (ly2 - ly1);
+    const dotCol = BASE_COL[seq[pbi()]];
+    ctx.beginPath(); ctx.arc(lx, dotY, 2.4, 0, Math.PI*2);
+    ctx.fillStyle = dotCol; ctx.shadowColor = dotCol; ctx.shadowBlur = 5;
+    ctx.fill(); ctx.shadowBlur = 0;
+
+    // ── Per-base coloured background bands ──────────────────
+    // Closed segments
+    for (const seg of sqSegs) {
+      if (seg.xR <= 0 || seg.xL >= SQ_LEN) continue;
+      const x1 = ox + Math.max(0, seg.xL) * step;
+      const x2 = ox + Math.min(SQ_LEN-1, seg.xR) * step;
+      ctx.fillStyle = seg.col + '18';
+      ctx.fillRect(x1, sigTop, x2 - x1, sigH);
+      // Left boundary tick + base label
+      _segTick(ox, sigTop, sigH, step, seg, false);
+    }
+    // Open (current) segment
+    if (sqOpen) {
+      const x1 = ox + Math.max(0, sqOpen.xL) * step;
+      const x2 = ox + (SQ_LEN - 1) * step;
+      ctx.fillStyle = sqOpen.col + '12';
+      ctx.fillRect(x1, sigTop, x2 - x1, sigH);
+      _segTick(ox, sigTop, sigH, step, sqOpen, true);
+    }
+
+    // ── Signal line (drawn on top of bands) ──────────────────
+    const curCol = BASE_COL[seq[pbi()]];
+    ctx.beginPath();
+    for (let i = 0; i < SQ_LEN; i++) {
+      const x = ox + i * step;
+      const y = sigTop + sigH * (1 - squigBuf[i]);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = curCol; ctx.lineWidth = 1.4;
+    ctx.shadowColor = curCol; ctx.shadowBlur = 3;
+    ctx.stroke(); ctx.shadowBlur = 0;
+
+    // Arrow → right panel
+    const ay = py + (ph + 4) * 0.5;
+    ctx.beginPath(); ctx.moveTo(ox+pw+2, ay); ctx.lineTo(SPLIT-1, ay);
+    ctx.strokeStyle = 'rgba(0,212,255,0.32)'; ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(SPLIT-6, ay-3); ctx.lineTo(SPLIT-1, ay); ctx.lineTo(SPLIT-6, ay+3);
+    ctx.fillStyle = 'rgba(0,212,255,0.32)'; ctx.fill();
+  }
+
+  function _segTick(ox, sigTop, sigH, step, seg, isOpen) {
+    const xL   = ox + Math.max(0, seg.xL) * step;
+    const xR_i = isOpen ? SQ_LEN - 1 : Math.min(SQ_LEN - 1, seg.xR);
+    const xR   = ox + xR_i * step;
+    const xMid = (xL + xR) * 0.5;
+    const alpha = isOpen ? 'dd' : '99';
+
+    // Left boundary — full-height tick
+    ctx.strokeStyle = seg.col + alpha; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(xL, sigTop); ctx.lineTo(xL, sigTop + sigH); ctx.stroke();
+
+    // Right boundary tick (only for closed segments)
+    if (!isOpen && xR < ox + (SQ_LEN - 1) * step + 2) {
+      ctx.beginPath(); ctx.moveTo(xR, sigTop); ctx.lineTo(xR, sigTop + sigH); ctx.stroke();
+      // Top bracket line
+      ctx.beginPath(); ctx.moveTo(xL, sigTop + 1); ctx.lineTo(xR, sigTop + 1); ctx.stroke();
+    }
+
+    // Base label ABOVE the signal (at top of signal area)
+    if (xMid > ox + 3 && xMid < ox + (SQ_LEN - 1) * step - 2) {
+      ctx.font = `bold ${isOpen ? 9 : 8}px JetBrains Mono`;
+      ctx.textAlign = 'center';
+      ctx.fillStyle = seg.col + (isOpen ? 'ff' : 'cc');
+      if (isOpen) { ctx.shadowColor = seg.col; ctx.shadowBlur = 4; }
+      ctx.fillText(seg.base, xMid, sigTop + 9);
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  // ─── Update squiggle ─────────────────────────────────────
+  function updateSquiggle() {
+    noisePhase += 0.22;
+    const curBase = seq[pbi()];
+    const level   = BASE_CURRENT[curBase];
+    const noise   = (Math.random()-0.5)*0.065 + Math.sin(noisePhase)*0.022;
+    const val     = Math.max(0.05, Math.min(0.97, level + noise));
+    squigBuf.copyWithin(0, 1);
+    squigBuf[SQ_LEN - 1] = val;
+    // Push to right-panel trace
+    rTrace[rTracePtr % RT_LEN] = val;
+    rTracePtr++;
+    // Shift all segment x-coords left by 1 (oldest data scrolls off left)
+    for (const s of sqSegs) { s.xL--; s.xR--; }
+    if (sqOpen) sqOpen.xL--;
+    // Remove segments that have completely scrolled off
+    while (sqSegs.length && sqSegs[0].xR <= 0) sqSegs.shift();
+  }
+
+  // ─── Right panel ─────────────────────────────────────────
+  function drawRightPanel() {
+    const px = SX, pw = SW, ph = H;
+    ctx.fillStyle = '#080c12';
+    ctx.fillRect(px, 0, pw, ph);
+    ctx.strokeStyle = DIM; ctx.lineWidth = 0.8;
+    ctx.strokeRect(px, 0, pw, ph);
+
+    const Z1 = ph * 0.29, Z2 = ph * 0.45, Z3 = ph * 0.81;
+
+    _drawRTrace(px+6, 4, pw-12, Z1-6);
+    _hDiv(px, Z1, pw, '→  tokenise');
+    _drawTokens(px+4, Z1+13, pw-8, Z2-Z1-18);
+    _hDiv(px, Z2, pw, '→  deep model');
+    _drawModel(px+4, Z2+13, pw-8, Z3-Z2-18);
+    _hDiv(px, Z3, pw, '→  decode');
+    _drawDecoded(px+4, Z3+10, pw-8, ph-Z3-16);
+  }
+
+  function _hDiv(px, y, pw, label) {
+    ctx.strokeStyle = DIM; ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(px, y); ctx.lineTo(px+pw, y); ctx.stroke();
+    ctx.font = '7px JetBrains Mono'; ctx.fillStyle = 'rgba(0,212,255,0.30)'; ctx.textAlign = 'left';
+    ctx.fillText(label, px+4, y+10);
+  }
+
+  function _drawRTrace(ox, oy, tw, th) {
+    ctx.font = '8px JetBrains Mono'; ctx.fillStyle = TEXT3; ctx.textAlign = 'left';
+    ctx.fillText('ionic current squiggle', ox, oy+9);
+
+    // Grid
+    ctx.strokeStyle = DIM; ctx.lineWidth = 0.35;
+    for (const f of [0.33, 0.66, 1.0]) {
+      const y = oy + th - f*(th-12) + 10;
+      ctx.beginPath(); ctx.moveTo(ox, y); ctx.lineTo(ox+tw, y); ctx.stroke();
+    }
+
+    const ordered = [];
+    for (let i = 0; i < RT_LEN; i++) ordered.push(rTrace[(rTracePtr + i) % RT_LEN]);
+    const step = tw / (RT_LEN - 1);
+    const curBase = seq[pbi()];
+
+    // ── Per-base bands on the right-panel trace ─────────────
+    const traceSigTop = oy + 12, traceSigH = th - 14;
+    const nowPtr = rTracePtr;
+    for (let si = 0; si < rtSegs.length; si++) {
+      const seg   = rtSegs[si];
+      const pNext = si+1 < rtSegs.length ? rtSegs[si+1].ptrStart : nowPtr;
+      const age   = nowPtr - seg.ptrStart;   // how old is the START
+      const ageE  = nowPtr - pNext;           // how old is the END
+      if (age  > RT_LEN) continue;
+      if (ageE < 0) continue;
+      // buffer index: ordered[i] = rTrace[(rTracePtr+i) % RT_LEN]
+      // so rTracePtr+i ≡ seg.ptrStart → i = seg.ptrStart - rTracePtr + RT_LEN (mod RT_LEN)
+      // but since ordered is shifted so that oldest is at 0 and newest at RT_LEN-1:
+      const iS = Math.max(0,       RT_LEN - age);
+      const iE = Math.min(RT_LEN,  RT_LEN - ageE);
+      if (iE <= iS) continue;
+      const x1 = ox + iS * step, x2 = ox + iE * step;
+      ctx.fillStyle = seg.col + '1a';
+      ctx.fillRect(x1, traceSigTop, x2-x1, traceSigH);
+      // Left boundary tick
+      ctx.strokeStyle = seg.col + '88'; ctx.lineWidth = 0.9;
+      ctx.beginPath(); ctx.moveTo(x1, traceSigTop); ctx.lineTo(x1, traceSigTop+traceSigH); ctx.stroke();
+      // Base label at midpoint
+      const mx = (x1+x2)*0.5;
+      if (mx > ox+3 && mx < ox+tw-2) {
+        ctx.font = 'bold 7px JetBrains Mono'; ctx.textAlign = 'center';
+        ctx.fillStyle = seg.col + 'cc';
+        ctx.fillText(seg.base, mx, traceSigTop+traceSigH-1);
+      }
+    }
+
+    // Glow fill
+    const grad = ctx.createLinearGradient(0, oy+10, 0, oy+th+10);
+    grad.addColorStop(0, BASE_COL[curBase]+'22');
+    grad.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ordered.forEach((v,i) => { const x=ox+i*step, y=oy+th-(v*(th-12))+10; i===0?ctx.moveTo(x,y):ctx.lineTo(x,y); });
+    ctx.lineTo(ox+tw,oy+th+10); ctx.lineTo(ox,oy+th+10); ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+
+    // Signal line
+    ctx.beginPath();
+    ordered.forEach((v,i) => { const x=ox+i*step, y=oy+th-(v*(th-12))+10; i===0?ctx.moveTo(x,y):ctx.lineTo(x,y); });
+    ctx.strokeStyle = BASE_COL[curBase]; ctx.lineWidth = 1.4;
+    ctx.shadowColor = BASE_COL[curBase]; ctx.shadowBlur = 4;
+    ctx.stroke(); ctx.shadowBlur = 0;
+  }
+
+  function _drawTokens(ox, oy, tw, th) {
+    const recent = tokenGroups.slice(-14);
+    if (!recent.length) return;
+    const cw = tw / 14, ch = th * 0.68, ty = oy + (th-ch)*0.35;
+    recent.forEach((tok, i) => {
+      const x = ox + i*cw + 1, col = BASE_COL[tok.base];
+      const isNew = i === recent.length-1;
+      ctx.globalAlpha = 0.45 + Math.min(1, tok.age/14)*0.50;
+      ctx.fillStyle = col+'1e'; ctx.strokeStyle = isNew ? col : col+'55';
+      ctx.lineWidth = isNew ? 1.2 : 0.6;
+      if (isNew) { ctx.shadowColor = col; ctx.shadowBlur = 5; }
+      ctx.fillRect(x, ty, cw-2, ch); ctx.strokeRect(x, ty, cw-2, ch);
+      ctx.shadowBlur = 0;
+      // Mini squiggle
+      ctx.beginPath();
+      tok.vals.forEach((v, j) => {
+        const tx = x+1 + j*((cw-4)/Math.max(1,tok.vals.length-1));
+        const tvy = ty+2+(ch-4)*(1-v);
+        j===0?ctx.moveTo(tx,tvy):ctx.lineTo(tx,tvy);
+      });
+      ctx.strokeStyle = col; ctx.lineWidth = 0.8; ctx.stroke();
+      ctx.globalAlpha = 1;
+    });
+    ctx.font = '7px JetBrains Mono'; ctx.fillStyle = TEXT3; ctx.textAlign = 'left';
+    ctx.fillText('chunks  →  embedding tokens', ox, oy+th);
+  }
+
+  function _drawModel(ox, oy, mw, mh) {
+    const nL = LAYERS.length, colW = mw/nL;
+    const lx = li => ox + li*colW + colW*0.5;
+    const flash = nnFlash > 0;
+
+    LAYERS.forEach((layer, li) => {
+      const cx  = lx(li);
+      const isT = layer.type === 'xfm';
+      const nc  = isT ? 4 : 3;
+      const col = isT ? PURPLE : layer.type==='conv' ? AMBER : GREEN;
+
+      // Connections to next layer
+      if (li < nL-1) {
+        const nx2 = lx(li+1);
+        const nc2 = LAYERS[li+1].type==='xfm' ? 4 : 3;
+        for (let a=0;a<nc;a++) for (let b=0;b<nc2;b++) {
+          ctx.beginPath();
+          ctx.moveTo(cx, _ny(oy,mh,a,nc)); ctx.lineTo(nx2, _ny(oy,mh,b,nc2));
+          ctx.strokeStyle = flash ? `rgba(168,85,247,${0.04+Math.random()*0.10})` : 'rgba(28,38,50,0.55)';
+          ctx.lineWidth = 0.5; ctx.stroke();
+        }
+      }
+
+      // Nodes
+      for (let j=0; j<nc; j++) {
+        const ny = _ny(oy,mh,j,nc);
+        const active = flash && Math.random()>0.42;
+        if (isT) {
+          // Square nodes = attention heads
+          ctx.fillStyle   = active ? col : '#0d1825';
+          ctx.strokeStyle = active ? col : col+'44';
+          ctx.lineWidth = 1;
+          if (active) { ctx.shadowColor=col; ctx.shadowBlur=7; }
+          ctx.fillRect(cx-4, ny-4, 8, 8); ctx.strokeRect(cx-4, ny-4, 8, 8);
+          ctx.shadowBlur = 0;
+        } else {
+          ctx.beginPath(); ctx.arc(cx, ny, 4, 0, Math.PI*2);
+          ctx.fillStyle   = active ? col : '#0d1825';
+          ctx.strokeStyle = active ? col : col+'44';
+          ctx.lineWidth = 1;
+          if (active) { ctx.shadowColor=col; ctx.shadowBlur=7; }
+          ctx.fill(); ctx.stroke(); ctx.shadowBlur=0;
+        }
+      }
+
+      // Self-attention arc on transformer
+      if (isT && flash) {
+        const n0=_ny(oy,mh,0,4), n3=_ny(oy,mh,3,4);
+        ctx.beginPath();
+        ctx.arc(cx+12, (n0+n3)*0.5, (n3-n0)*0.5, -Math.PI*0.5, Math.PI*0.5);
+        ctx.strokeStyle = `rgba(168,85,247,${0.14+Math.random()*0.20})`;
+        ctx.lineWidth=1; ctx.stroke();
+      }
+
+      ctx.font='7px JetBrains Mono'; ctx.textAlign='center';
+      ctx.fillStyle = col+'aa';
+      ctx.fillText(layer.label, cx, oy+mh+2);
+    });
+  }
+
+  function _ny(oy, nh, j, n) { return oy + 4 + ((nh-14)/(n+1))*(j+1); }
+
+  function _drawDecoded(ox, oy, bw, bh) {
+    const recent = decodedBases.slice(-24);
+    const cw = bw/24;
+    ctx.font = 'bold 10px JetBrains Mono'; ctx.textAlign = 'center';
+    recent.forEach((item, i) => {
+      ctx.globalAlpha = 0.35 + Math.min(1, item.age/20)*0.65;
+      ctx.fillStyle = item.col;
+      if (i===recent.length-1) { ctx.shadowColor=item.col; ctx.shadowBlur=8; }
+      ctx.fillText(item.base, ox+i*cw+cw*0.5, oy+bh*0.5+4);
+      ctx.shadowBlur=0;
+    });
+    ctx.globalAlpha=1;
+  }
+
+  // ─── Main animate loop ───────────────────────────────────
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+
+    // LEFT PANEL
+    ctx.save();
+    ctx.beginPath(); ctx.rect(0, 0, SPLIT, H); ctx.clip();
+    ctx.fillStyle = BG; ctx.fillRect(0, 0, SPLIT, H);
+    // Voltage labels
+    ctx.font='bold 9px JetBrains Mono'; ctx.textAlign='center';
+    ctx.fillStyle='rgba(255,184,48,0.45)'; ctx.fillText('+', 10, 14);
+    ctx.fillStyle='rgba(255,64,96,0.45)';  ctx.fillText('−', 10, SQ_Y-6);
+    drawMembrane();
+    updateIons(); drawIons();
+    drawPoreBarrel();
+    drawStrand();
+    updateSquiggle();
+    drawSquiggleStrip();
+    ctx.restore();
+
+    // RIGHT PANEL
+    drawRightPanel();
+
+    // Advance strand — loop seamlessly
+    strandPx += PX_PER_FRAME;
+    if (strandPx >= SEQ_LEN * SPACING) strandPx -= SEQ_LEN * SPACING;
+
+    // Detect base change → record segment boundaries
+    const curPbi = pbi();
+    if (curPbi !== lastPbi) {
+      lastPbi = curPbi;
+      const b   = seq[curPbi];
+      const col = BASE_COL[b];
+
+      // Close the open squig segment
+      if (sqOpen) {
+        sqOpen.xR = SQ_LEN - 1;
+        sqSegs.push(sqOpen);
+        if (sqSegs.length > 12) sqSegs.shift();
+      }
+      // Open a new squig segment starting at right edge
+      sqOpen = { base: b, col, xL: SQ_LEN - 1 };
+
+      // Record rTrace boundary
+      rtSegs.push({ base: b, col, ptrStart: rTracePtr });
+      if (rtSegs.length > 80) rtSegs.shift();
+
+      // Decoded bases
+      decodedBases.push({ base: b, col, age: 0 });
+      if (decodedBases.length > 80) decodedBases.shift();
+
+      // Token snapshot
+      tokenGroups.push({ vals: Array.from(squigBuf.slice(-TOK_W)), base: b, age: 0 });
+      if (tokenGroups.length > 30) tokenGroups.shift();
+
+      nnFlash = 26;
+    }
+
+    decodedBases.forEach(d => d.age++);
+    tokenGroups.forEach(t => t.age++);
+    if (nnFlash > 0) nnFlash--;
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+
+
+// ============================================================
+// QECC CANVAS — Stabilizer / Syndrome measurement
+// ============================================================
+(function() {
+  const canvas = document.getElementById('qeccCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const PURPLE = '#a855f7', GREEN = '#00ff88', RED = '#ff4060', DIM = '#1e2733';
+  const GRID = 6;
+  let qubits = Array.from({length: GRID * GRID}, () => ({
+    state: Math.random() > 0.85 ? 1 : 0, // 1 = error
+    syndrome: 0,
+    anim: 0
+  }));
+
+  let t = 0;
+  setInterval(() => {
+    const i = Math.floor(Math.random() * qubits.length);
+    qubits[i].state = 1; qubits[i].anim = 1;
+    setTimeout(() => {
+      qubits[i].state = 0; qubits[i].syndrome = 1; qubits[i].anim = 0;
+      setTimeout(() => { qubits[i].syndrome = 0; }, 700);
+    }, 500);
+  }, 350);
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const cw = W / (GRID + 2), ch = H / (GRID + 1.5);
+    const ox = cw, oy = ch * 0.6;
+
+    qubits.forEach((q, idx) => {
+      const col = idx % GRID, row = Math.floor(idx / GRID);
+      const x = ox + col * cw, y = oy + row * ch;
+      const r = 9;
+
+      // Stabilizer lines (thin)
+      if (col < GRID - 1) {
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + cw, y);
+        ctx.strokeStyle = DIM; ctx.lineWidth = 0.8; ctx.stroke();
+      }
+      if (row < GRID - 1) {
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y + ch);
+        ctx.strokeStyle = DIM; ctx.lineWidth = 0.8; ctx.stroke();
+      }
+
+      // Qubit
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+      let fill, stroke, glow;
+      if (q.state === 1) { fill = RED; stroke = RED; glow = RED; }
+      else if (q.syndrome) { fill = GREEN; stroke = GREEN; glow = GREEN; }
+      else { fill = '#0f1a28'; stroke = PURPLE; glow = null; }
+
+      if (glow) { ctx.shadowColor = glow; ctx.shadowBlur = 12; }
+      ctx.fillStyle = fill;
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = 1.5;
+      ctx.fill(); ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // |0⟩ / |1⟩ label
+      ctx.fillStyle = q.state ? '#fff' : (q.syndrome ? '#000' : PURPLE);
+      ctx.font = '7px JetBrains Mono';
+      ctx.textAlign = 'center';
+      ctx.fillText(q.state ? 'X' : (q.syndrome ? '✓' : '|0⟩'), x, y + 2.5);
+    });
+
+    ctx.textAlign = 'left';
+    ctx.font = '9px JetBrains Mono';
+    ctx.fillStyle = '#3d5068';
+    ctx.fillText('Surface code — stabilizer measurements', 8, H - 6);
+
+    ctx.fillStyle = RED; ctx.fillText('● Pauli error', W - 120, H - 6);
+  }
+
+  function animate() { t += 0.016; draw(); requestAnimationFrame(animate); }
+  animate();
+})();
+
+
+// ============================================================
+// LDPC RL CANVAS — Parity matrix evolution
+// ============================================================
+(function() {
+  const canvas = document.getElementById('ldpcCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const ROWS = 10, COLS = 18;
+  let matrix = Array.from({length: ROWS}, () =>
+    Array.from({length: COLS}, () => Math.random() < 0.25 ? 1 : 0)
+  );
+  let highlights = new Map(); // key -> {type, age}
+  let t = 0;
+
+  setInterval(() => {
+    // Simulate RL "action": flip a circulant block
+    const r = Math.floor(Math.random() * ROWS);
+    const c = Math.floor(Math.random() * COLS);
+    const old = matrix[r][c];
+    matrix[r][c] = old ? 0 : 1;
+    highlights.set(`${r},${c}`, { type: matrix[r][c] ? 'add' : 'rem', age: 1 });
+  }, 120);
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const cw = (W - 20) / COLS, ch = (H - 28) / ROWS;
+    const ox = 10, oy = 14;
+
+    // Sparse weight bars (top indicator)
+    for (let c = 0; c < COLS; c++) {
+      const weight = matrix.reduce((s, row) => s + row[c], 0);
+      const bh = (weight / ROWS) * 10;
+      ctx.fillStyle = '#253040';
+      ctx.fillRect(ox + c * cw + 1, oy - 12, cw - 2, 10);
+      ctx.fillStyle = '#00d4ff';
+      ctx.fillRect(ox + c * cw + 1, oy - 2 - bh, cw - 2, bh);
+    }
+
+    matrix.forEach((row, r) => {
+      row.forEach((val, c) => {
+        const x = ox + c * cw, y = oy + r * ch;
+        const key = `${r},${c}`;
+        const hl = highlights.get(key);
+
+        let fill = val ? '#253040' : 'transparent';
+        let glow = null;
+        if (hl) {
+          if (hl.type === 'add') { fill = '#00ff88'; glow = '#00ff88'; }
+          else { fill = '#ff4060'; glow = '#ff4060'; }
+          hl.age -= 0.06;
+          if (hl.age <= 0) highlights.delete(key);
+          ctx.globalAlpha = hl ? Math.max(0.3, hl.age) : 1;
+        }
+
+        if (glow) { ctx.shadowColor = glow; ctx.shadowBlur = 8; }
+        ctx.fillStyle = fill;
+        if (val || hl) {
+          ctx.fillRect(x + 1, y + 1, cw - 2, ch - 2);
+        }
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+
+        if (!val && !hl) {
+          ctx.fillStyle = '#0d1520';
+          ctx.fillRect(x + 1, y + 1, cw - 2, ch - 2);
+        }
+      });
+    });
+
+    ctx.textAlign = 'left';
+    ctx.font = '9px JetBrains Mono';
+    ctx.fillStyle = '#3d5068';
+    ctx.fillText('H matrix — RL policy updating circulant blocks', 8, H - 4);
+  }
+
+  function animate() { t += 0.016; draw(); requestAnimationFrame(animate); }
+  animate();
+})();
+
+
+// ============================================================
+// DNA RESEARCH CANVAS — Encoding constraints visualization
+// ============================================================
+(function() {
+  const canvas = document.getElementById('dnaResCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const bases = ['A','T','G','C'];
+  const colors = { A: '#00ff88', T: '#00d4ff', G: '#ffb830', C: '#a855f7' };
+  const LEN = 24;
+  let strands = [
+    { seq: Array.from({length: LEN}, () => bases[Math.floor(Math.random() * 4)]), y: H * 0.3, label: 'raw' },
+    { seq: [], y: H * 0.7, label: 'encoded' }
+  ];
+
+  function encode(seq) {
+    // Fake "constrained" version: avoid homopolymers
+    return seq.map((b, i) => {
+      if (i > 0 && seq[i-1] === b) {
+        const alts = bases.filter(x => x !== b);
+        return alts[Math.floor(Math.random() * alts.length)];
+      }
+      return b;
+    });
+  }
+
+  strands[1].seq = encode(strands[0].seq);
+  let t = 0;
+  let flashPos = -1;
+
+  setInterval(() => {
+    const pos = Math.floor(Math.random() * LEN);
+    strands[0].seq[pos] = bases[Math.floor(Math.random() * 4)];
+    strands[1].seq = encode(strands[0].seq);
+    flashPos = pos;
+    setTimeout(() => flashPos = -1, 400);
+  }, 500);
+
+  function drawStrand(strand) {
+    const cw = (W - 20) / LEN;
+    strand.seq.forEach((base, i) => {
+      const x = 10 + i * cw + cw / 2, y = strand.y;
+      const isFlash = i === flashPos;
+
+      // Backbone
+      if (i < LEN - 1) {
+        ctx.beginPath();
+        ctx.moveTo(x, y); ctx.lineTo(x + cw, y);
+        ctx.strokeStyle = '#1e2733'; ctx.lineWidth = 1; ctx.stroke();
+      }
+
+      // Homopolymer warning
+      const isHomo = i > 0 && strand.seq[i-1] === base && strand.label === 'raw';
+      ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = isHomo ? 'rgba(255,64,96,0.3)' : '#0f1a28';
+      ctx.strokeStyle = isHomo ? '#ff4060' : colors[base];
+      ctx.lineWidth = isFlash ? 2 : 1.2;
+      if (isFlash) { ctx.shadowColor = colors[base]; ctx.shadowBlur = 8; }
+      ctx.fill(); ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = isHomo ? '#ff4060' : colors[base];
+      ctx.font = '7px JetBrains Mono';
+      ctx.textAlign = 'center';
+      ctx.fillText(base, x, y + 2.5);
+    });
+
+    // Label
+    ctx.textAlign = 'left';
+    ctx.font = '9px JetBrains Mono';
+    ctx.fillStyle = strand.label === 'raw' ? '#ff4060' : '#00ff88';
+    ctx.fillText(strand.label === 'raw' ? 'raw sequence' : 'constrained encoding', 10, strand.y - 14);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    drawStrand(strands[0]);
+
+    // Arrow
+    ctx.beginPath();
+    ctx.moveTo(W / 2, H * 0.42); ctx.lineTo(W / 2, H * 0.56);
+    ctx.strokeStyle = '#00ff88'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.fillStyle = '#00ff88';
+    ctx.beginPath();
+    ctx.moveTo(W/2 - 5, H * 0.54); ctx.lineTo(W/2, H * 0.58); ctx.lineTo(W/2 + 5, H * 0.54);
+    ctx.fill();
+    ctx.font = '9px JetBrains Mono'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#3d5068'; ctx.fillText('Euclid encoder', W / 2, H * 0.505);
+
+    drawStrand(strands[1]);
+  }
+
+  function animate() { t += 0.016; draw(); requestAnimationFrame(animate); }
+  animate();
+})();
+
+
+// ============================================================
+// SCROLL FADE-IN
+// ============================================================
+// Hero elements are already in viewport — make them visible immediately
+document.querySelectorAll('#hero .fade-in').forEach(el => el.classList.add('visible'));
+
+// All other fade-ins use scroll observer
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in:not(#hero .fade-in)').forEach(el => observer.observe(el));
+
+</script>
+</body>
 </html>
